@@ -48,6 +48,8 @@ public abstract class Model : MonoBehaviour
     protected const float fRotate_Speed = 600;
     [HideInInspector] public float fAttack_Time = 0;
     [HideInInspector] public bool bAttack = false;
+
+    protected const string sAttack_Type = "Attack_Type";
     public virtual void Init()
     {
         if (animator == null)

@@ -455,11 +455,11 @@ public class ModelManager : Singleton<ModelManager>
              _mob.Set_Target(player.gameObject);
              _mob.Init(_stageData.nBossIndex);
              dicLive_Monster.Add(_mob.gameObject, _mob);
+             UIManager.Instance.Set_BossHp(_mob);
          });
 
         isBoss = true;
         target_Obj = _mob.gameObject;
-        UIManager.Instance.Set_BossHp(_mob);
     }
 
     public Vector3 Get_Monster_Pos()

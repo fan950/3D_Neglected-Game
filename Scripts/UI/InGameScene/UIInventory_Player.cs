@@ -14,6 +14,7 @@ public class UIInventory_Player : MonoBehaviour
     public Transform body_Pos;
 
     private const int nLayer_Index = 5;
+    private const string sIdle_Type = "Idle_Type";
 
     public void Init()
     {
@@ -58,7 +59,7 @@ public class UIInventory_Player : MonoBehaviour
                 {
                     case eAttack_Type.TH_Sword:
                     case eAttack_Type.TH_Axe:
-                        animator.SetFloat("Idle_Type", 0);
+                        animator.SetFloat(sIdle_Type, 0);
                         break;
                     case eAttack_Type.Sword:
                     case eAttack_Type.Mace:
@@ -66,10 +67,10 @@ public class UIInventory_Player : MonoBehaviour
                     case eAttack_Type.Dagger:
                     case eAttack_Type.Spell:
                     case eAttack_Type.Scythe:
-                        animator.SetFloat("Idle_Type", 2);
+                        animator.SetFloat(sIdle_Type, 2);
                         break;
                     case eAttack_Type.Spear:
-                        animator.SetFloat("Idle_Type", 1);
+                        animator.SetFloat(sIdle_Type, 1);
                         break;
                 }
                 break;

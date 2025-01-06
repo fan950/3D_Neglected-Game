@@ -194,6 +194,12 @@ public class Player : Model
         }
     }
     #endregion
+
+    protected const string sIdle_Type = "Idle_Type";
+    protected const string sIdle_Mask = "Idle_Mask";
+    protected const string sAttack_Mask = "Attack_Mask";
+    protected const string sAni_Run = "Run";
+    protected const string sAni_Idle = "Idle";
     public override void Init()
     {
         base.Init();
@@ -300,7 +306,7 @@ public class Player : Model
         if (!bAttack && model_State_Common.fAttack_Speed <= fAttack_Time)
         {
             fAttack_Time = 0;
-            animator.SetFloat("Attack_Type", TableManager.Instance.weaponTable.Get_AniType(weapon_Player.nIndex));
+            animator.SetFloat(sAttack_Type, TableManager.Instance.weaponTable.Get_AniType(weapon_Player.nIndex));
             Play_AniTrigger(sName);
             bAttack = true;
         }
@@ -316,7 +322,7 @@ public class Player : Model
         {
             case eAttack_Type.TH_Sword:
             case eAttack_Type.TH_Axe:
-                animator.SetFloat("Idle_Type", 0);
+                animator.SetFloat(sIdle_Type, 0);
                 break;
             case eAttack_Type.Sword:
             case eAttack_Type.Mace:
@@ -324,10 +330,10 @@ public class Player : Model
             case eAttack_Type.Dagger:
             case eAttack_Type.Spell:
             case eAttack_Type.Scythe:
-                animator.SetFloat("Idle_Type", 2);
+                animator.SetFloat(sIdle_Type, 2);
                 break;
             case eAttack_Type.Spear:
-                animator.SetFloat("Idle_Type", 1);
+                animator.SetFloat(sIdle_Type, 1);
                 break;
         }
     }
@@ -438,7 +444,7 @@ public class Player : Model
         if (_dir.x != 0 || _dir.y != 0)
         {
             if (current_State != eFsm_State.Skill)
-                Play_AniTrigger("Run");
+                Play_AniTrigger(sAni_Run);
 
             Vector3 _worldDir = new Vector3(_dir.x, 0, _dir.y);
             transform.position = Vector3.MoveTowards(transform.position, transform.position + _worldDir, Time.deltaTime * fMove_Speed);
@@ -451,7 +457,7 @@ public class Player : Model
             if (current_State != eFsm_State.Skill)
             {
                 Nav_Stop(true);
-                Play_AniTrigger("Idle");
+                Play_AniTrigger(sAni_Idle);
             }
         }
     }
@@ -459,7 +465,7 @@ public class Player : Model
     {
         if (!bAttack)
         {
-            Attack_Action("Attack_Mask");
+            Attack_Action(sAttack_Mask);
             bAniMask = false;
             animator.SetLayerWeight(1, 1);
         }
@@ -469,7 +475,7 @@ public class Player : Model
             if (stateInfo.normalizedTime >= 1.0f)
             {
                 if (!bAniMask)
-                    Play_AniTrigger("Idle_Mask");
+                    Play_AniTrigger(sIdle_Mask);
                 bAniMask = true;
                 bAttack = false;
                 fAttack_Time = 0;

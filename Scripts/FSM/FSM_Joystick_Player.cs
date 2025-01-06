@@ -5,12 +5,13 @@ using UnityEngine;
 public class FSM_Joystick_Player : FSM
 {
     private Player player;
+    private const string sRun_Name = "Run";
     public override void Start_FSM(Model model)
     {
         if (player == null)
             player = model as Player;
 
-        player.animator.SetTrigger("Run");
+        player.animator.SetTrigger(sRun_Name);
     }
     public override void Update_FSM(Model model)
     {

@@ -27,7 +27,7 @@ public class Monster : Model
         model_State_Common.eAttack_Type = _monsterData.eAttack_Type;
         model_State_Common.fAttack_Distance = _monsterData.fAttack_Distance;
         monster_Type = _monsterData.monster_Type;
-        animator.SetInteger("Attack_Type", TableManager.Instance.monsterTable.Get_AniType(nIndex));
+        animator.SetInteger(sAttack_Type, TableManager.Instance.monsterTable.Get_AniType(nIndex));
 
         fAttack_Speed = model_State_Common.fAttack_Speed;
 

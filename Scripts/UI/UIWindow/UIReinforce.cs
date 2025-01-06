@@ -24,6 +24,8 @@ public class UIReinforce : UIWindow
     private Coroutine Coro_Reinforce;
 
     private const string sItem_Path = "UI/InGameScene/UIInventroySlot";
+    private const int nRandom_min = 1;
+    private const int nRandom_max = 101;
     private int nBase_Max = 60;
     private float[] arrPercent = { 50, 40, 30, 20, 10 };
     private bool bWeapon_Type;
@@ -206,7 +208,7 @@ public class UIReinforce : UIWindow
             uiInvenItem_Pool.Return(_uiInventroySlot);
             arrMaterial_Slot[i].Set_Remove();
         }
-        int _nRandom = UnityEngine.Random.Range(1, 101);
+        int _nRandom = UnityEngine.Random.Range(nRandom_min, nRandom_max);
 
         if (_nRandom <= arrPercent[_reinforce.nStar])
         {
